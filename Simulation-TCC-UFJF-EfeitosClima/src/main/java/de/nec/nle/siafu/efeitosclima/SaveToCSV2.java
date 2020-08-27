@@ -27,29 +27,29 @@ import de.nec.nle.siafu.model.Position;
 import de.nec.nle.siafu.model.World;
 import de.nec.nle.siafu.types.EasyTime;
 
-public class SaveToCSV {
+public class SaveToCSV2 {
 	
-	public static final SaveToCSV instance = new SaveToCSV();
+	public static final SaveToCSV2 instance = new SaveToCSV2();
 	
-	public SaveToCSV()
+	public SaveToCSV2()
 	{
 	    try {
 	    	
-	        File overallClimateFile = new File("E:\\faculdade\\Siafu-master2\\SiafuContext\\climate_details.csv");
+	        File overallClimateFile = new File("E:\\faculdade\\Siafu-master2\\SiafuContext\\climate_details2.csv");
 	        if (overallClimateFile.createNewFile()) {
 	          System.out.println("File created: " + overallClimateFile.getName());
 	        } else {
 	          System.out.println("File already exists.");
 	        }
 
-	        File fromToFile = new File("E:\\faculdade\\Siafu-master2\\SiafuContext\\from_to.csv");
+	        File fromToFile = new File("E:\\faculdade\\Siafu-master2\\SiafuContext\\from_to2.csv");
 	        if (fromToFile.createNewFile()) {
 	          System.out.println("File created: " + fromToFile.getName());
 	        } else {
 	          System.out.println("File already exists.");
 	        }
 
-	        File agentsFile = new File("E:\\faculdade\\Siafu-master2\\SiafuContext\\agents.csv");
+	        File agentsFile = new File("E:\\faculdade\\Siafu-master2\\SiafuContext\\agents2.csv");
 	        if (agentsFile.createNewFile()) {
 	          System.out.println("File created: " + agentsFile.getName());
 	        } else {
@@ -63,7 +63,7 @@ public class SaveToCSV {
 	    
 	}
 	
-	public static SaveToCSV getInstance()
+	public static SaveToCSV2 getInstance()
 	{
 		return instance;
 	}
@@ -71,9 +71,9 @@ public class SaveToCSV {
 	public void saveAgentDetails(Agent agent)
 	{
 		try {
-		FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\agents.csv",true);
+		FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\agents2.csv",true);
 		
-		String output = agent.getName().toString()+","
+		String output = agent.getName().toString()+"2,"
 		+agent.get(AGE).toString()+","
 		+agent.get(GENDER).toString()+","
 		+agent.get(IMC).toString()+","
@@ -84,7 +84,7 @@ public class SaveToCSV {
 		myWriter.write(output);
 		myWriter.close();
 	      
-		System.out.println("Successfully wrote to agents.csv.");
+		System.out.println("Successfully wrote to agents2.csv.");
 		
 	    } catch (IOException|PositionOutOfTheMapException e) {
 	      System.out.println("An error occurred.");
@@ -95,11 +95,11 @@ public class SaveToCSV {
 	public void updateFile(Agent agent, String hour,World world)
 	{
 		try {
-		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\climate_details.csv",true);
+		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\climate_details2.csv",true);
 		      
 		      
 		      
-		      String output = agent.getName().toString()+","
+		      String output = agent.getName().toString()+"2,"
 		    		  + agent.get(AGE).toString()+","
 		    		  + hour+"##"
 		    		  + agent.get(DATE).toString()+","
@@ -118,7 +118,7 @@ public class SaveToCSV {
 		      myWriter.write(output);
 		      myWriter.close();
 		      
-		      System.out.println("Successfully wrote to climate_details.csv.");
+		      System.out.println("Successfully wrote to climate_details2.csv.");
 		    } catch (IOException|PositionOutOfTheMapException e) {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
@@ -128,9 +128,9 @@ public class SaveToCSV {
 	public void updateFileMixed(Agent agent, String hour)
 	{
 		try {
-		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\climate_details.csv",true);
+		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\climate_details2.csv",true);
 		      
-		      String output = agent.getName().toString()+"_Mixed,"
+		      String output = agent.getName().toString()+"2_Mixed,"
 		    		  + agent.get(AGE).toString()+","
 		    		  + hour+"##"
 		    		  + agent.get(DATE).toString()+","
@@ -144,7 +144,7 @@ public class SaveToCSV {
 		      myWriter.write(output);
 		      myWriter.close();
 		      
-		      System.out.println("Successfully wrote to climate_details.csv.");
+		      System.out.println("Successfully wrote to climate_details2.csv.");
 		    } catch (IOException|UnknownContextException e) {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
@@ -154,7 +154,7 @@ public class SaveToCSV {
 	public void updateFromTo(Agent agent)
 	{
 		try {
-		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\from_to.csv",true);
+		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\from_to2.csv",true);
 
 		      EasyTime leftHome = (EasyTime)agent.get(LEFTHOME);
 		      EasyTime reachWork = (EasyTime)agent.get(REACHWORK);
@@ -165,7 +165,7 @@ public class SaveToCSV {
 		      int secondsHomeToWork= reachWork.getTimeInSeconds()-leftHome.getTimeInSeconds();
 		      int secondsWorkToHome= reachHome.getTimeInSeconds()-leftWork.getTimeInSeconds();
 		      
-		      String output = agent.getName().toString()+","
+		      String output = agent.getName().toString()+"2,"
 		    		  + agent.get(DATE).toString()+","
 		    		  + secondsHomeToWork+","
 		    		  + secondsWorkToHome+"\n";
@@ -173,7 +173,7 @@ public class SaveToCSV {
 		      myWriter.write(output);
 		      myWriter.close();
 		      
-		      System.out.println("Successfully wrote to from_to.csv.");
+		      System.out.println("Successfully wrote to from_to2.csv.");
 		    } catch (IOException e) {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
@@ -183,7 +183,7 @@ public class SaveToCSV {
 	public void updateFromToMixedClimate(Agent agent)
 	{
 		try {
-		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\from_to.csv",true);
+		      FileWriter myWriter = new FileWriter("E:\\faculdade\\Siafu-master2\\SiafuContext\\from_to2.csv",true);
 
 		      EasyTime leftHome = (EasyTime)agent.get(LEFTHOME);
 		      EasyTime reachWork = (EasyTime)agent.get(REACHWORK);
@@ -194,7 +194,7 @@ public class SaveToCSV {
 		      int secondsHomeToWork= reachWork.getTimeInSeconds()-leftHome.getTimeInSeconds();
 		      int secondsWorkToHome= reachHome.getTimeInSeconds()-leftWork.getTimeInSeconds();
 		      
-		      String output = agent.getName().toString()+"_Mixed,"
+		      String output = agent.getName().toString()+"2_Mixed,"
 		    		  + agent.get(DATE).toString()+","
 		    		  + secondsHomeToWork+","
 		    		  + secondsWorkToHome+"\n";
@@ -202,7 +202,7 @@ public class SaveToCSV {
 		      myWriter.write(output);
 		      myWriter.close();
 		      
-		      System.out.println("Successfully wrote to from_to.csv.");
+		      System.out.println("Successfully wrote to from_to2.csv.");
 		    } catch (IOException e) {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
